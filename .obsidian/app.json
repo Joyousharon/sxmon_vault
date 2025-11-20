@@ -1,5 +1,7 @@
 {
-  "useMarkdownLinks": false,
-  "newLinkFormat": "shortest",
-  "attachmentFolderPath": "./附件"
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative",
+  "attachmentFolderPath": "/",
+  "showUnsupportedFiles": false,
+  "promptDelete": false
 }
