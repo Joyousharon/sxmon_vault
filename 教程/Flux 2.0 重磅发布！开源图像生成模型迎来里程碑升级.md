@@ -1,63 +1,79 @@
-
 ## 🎉 重大消息
 
 AI 图像领域迎来革命性突破！Black Forest Labs 正式发布 **Flux 2.0** —— 当前最强大的开源图片生成与编辑模型之一。这次升级不仅显著提升了文本理解精准度、细节还原能力和专业控制能力，更首次将开源模型的图像编辑水准提升至商业级闭源模型的水平。
 
+![](assets/Flux%202.0%20重磅发布！开源图像生成模型迎来里程碑升级/file-20251127230410147.png)
+
 ## ✨ 核心亮点
 
 ### 性能全面提升
+
 - **精准理解**：大幅提升文本提示词的理解准确性
 - **细节还原**：增强图像细节生成能力
 - **专业控制**：提供更精细的图像控制选项
 - **编辑能力**：图像编辑效果媲美商业闭源模型
-![](assets/Flux%202.0%20重磅发布！开源图像生成模型迎来里程碑升级/file-20251127224653514.png)
 
 ### 完全开源免费
+
 **最重要的突破**：Flux 2.0 完全开源、免费可用，支持本地部署与多平台调用！无论是设计师、内容创作者，还是 AI 图像工具爱好者，现在都能享受到旗舰级开源模型带来的便利。
 
 ## 🆓 免费使用指南
 
 ### 当前可用版本
+
 - **Flux 2.0 Pro** - 功能完整版
 - **Flux 2.0 Flex** - 轻量优化版
 
 **无需信用卡**，只需注册免费账号即可获得每日使用额度！
 
 ### 推荐使用平台
-1. **官方平台** - https://playground.bfl.ai/image/generate
-2. **HuggingFace** - https://huggingface.co/spaces/black-forest-labs/FLUX.2-dev
+
+1. **官方平台** - [https://playground.bfl.ai/image/generate](https://playground.bfl.ai/image/generate)
+2. **HuggingFace** - [https://huggingface.co/spaces/black-forest-labs/FLUX.2-dev](https://huggingface.co/spaces/black-forest-labs/FLUX.2-dev)
 
 **使用方法**：选择对应模型 → 上传图片 → 输入提示词 → 生成效果
-![](assets/Flux%202.0%20重磅发布！开源图像生成模型迎来里程碑升级/file-20251127224800826.png)
+
+![](assets/Flux%202.0%20重磅发布！开源图像生成模型迎来里程碑升级/file-20251127230424162.png)
+
 ## 💻 本地部署方案
 
 ### 硬件要求
+
 - **标准版**：至少 32GB 显存
 - **量化版**：硬件要求更低，适合普通用户
 
 ### 模型下载渠道
-1. **GitHub** - 官方源码和文档
-2. **HuggingFace** - 模型文件和社区资源
-3. **打包下载** - 完整资源包
+
+1. **GitHub** - [https://github.com/black-forest-labs/flux2](https://github.com/black-forest-labs/flux2)
+2. **HuggingFace** - [https://huggingface.co/black-forest-labs/FLUX.2-dev](https://huggingface.co/black-forest-labs/FLUX.2-dev)
+3. **打包下载** - [https://pan.quark.cn/s/04fa94c18d6b#/list/share](https://pan.quark.cn/s/04fa94c18d6b#/list/share)
 
 ## 🛠️ 简易部署方案
 
+![](assets/Flux%202.0%20重磅发布！开源图像生成模型迎来里程碑升级/file-20251127230500350.png)
+
 ### 推荐：ComfyUI 一键部署
+
 通过 ComfyUI 可以最简单快速地体验 Flux 2.0：
 
-1. **安装最新版 ComfyUI**
+1. **安装最新版** [https://www.comfy.org/zh-cn/](https://www.comfy.org/zh-cn/)
 2. **在模板中心直接下载**：
-   - Flux 2.0 Dev 版本
-   - Flux 2.0 Pro 版本
+    - Flux 2.0 Dev 版本
+    - Flux 2.0 Pro 版本
 
+![](assets/Flux%202.0%20重磅发布！开源图像生成模型迎来里程碑升级/file-20251127230508419.png)
 ### 优势特性
+
 - **完全离线使用** - 保护隐私，不受网络限制
 - **高度可定制** - 自由调整参数和流程
 - **社区支持** - 丰富的插件和工作流
 
+![](assets/Flux%202.0%20重磅发布！开源图像生成模型迎来里程碑升级/file-20251127230517146.png)
+
 ## 🚀 使用体验
 
 部署完成后，用户即可：
+
 - 自由生成高质量图像
 - 进行专业级图像编辑
 - 探索无限创作可能性
