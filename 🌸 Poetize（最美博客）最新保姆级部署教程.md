@@ -82,17 +82,18 @@
 3. **配置启动参数（核心步骤）**：
     
     - 在“项目执行命令”的末尾（注意先打一个**空格**），粘贴以下代码：
+    - 
+        --spring.datasource.username=root --spring.datasource.password=密码
         
-    
     - _请将 `你的数据库密码` 替换为你宝塔数据库 root 的真实密码。_
-        
-4. **选项勾选**：
+        ![](assets/🌸%20Poetize（最美博客）最新保姆级部署教程/file-20260209231337766.png)
+1. **选项勾选**：
     
     - [x] 守护进程
         
     - [x] 监听重启
         
-5. 点击确定启动。查看日志，显示 `Started` 即为启动成功。
+2. 点击确定启动。查看日志，显示 `Started` 即为启动成功。
     
 
 ---
@@ -108,23 +109,81 @@
     - 域名：填写你的域名。
         
     - PHP版本：纯静态。
-        
-2. **配置 SSL**：
+        ![](assets/🌸%20Poetize（最美博客）最新保姆级部署教程/file-20260209231457708.png)
+1. **配置 SSL**：
     
     - 在站点设置中，点击 **【SSL】**，申请 Let's Encrypt 证书并部署。
         
     - 右上角开启 **【强制HTTPS】**。
         
-3. **修改配置文件**：
+2. **修改配置文件**：
     
     - 点击站点设置 -> **【配置文件】**。
         
     - **全选清空**当前所有内容。
         
     - **复制下方完整代码**粘贴进去。
-        
-    - **替换工作**：按 `Ctrl+F` 搜索 `192.168.6.132`，全部替换为你的 **域名**。
-        
+    -
+	server {
+    listen                          443 ssl;
+    server_name                     192.168.6.132; #域名
+    ssl_certificate                 /www/server/panel/vhost/cert/192.168.6.132/fullchain.pem;
+    ssl_certificate_key             /www/server/panel/vhost/cert/192.168.6.132/privkey.pem;
+    ssl_session_timeout              5m;
+    ssl_protocols                    TLSv1.1 TLSv1.2 TLSv1.3;
+    ssl_ciphers                      ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_prefer_server_ciphers  on;
+
+    # 禁止访问隐藏目录(.git/)和隐藏文件(.file)和遍历目录(../)
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+
+    location / {
+        root       /home/poetize/poetize-ui/; #前端路径，注意域名
+        index      index.html;
+        try_files  $uri $uri/ /index.html;
+    }
+
+    location /im {
+        alias      /home/poetize/poetize-im-ui/; #这里聊天室路径，注意域名
+        index      index.html;
+        try_files  $uri $uri/ /index.html;
+    }
+
+    location /api/ {
+        rewrite           ^/api/(.*)$ /$1 break;
+        proxy_pass        http://127.0.0.1:8081;
+        proxy_redirect    off;
+        proxy_set_header  Host $host;
+        proxy_set_header  X-real-ip $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    location /socket {
+        proxy_pass          http://127.0.0.1:9324;
+        proxy_http_version  1.1;
+        proxy_set_header    Upgrade $http_upgrade;
+        proxy_set_header    Connection "upgrade";
+        proxy_read_timeout  600s;
+    }
+
+
+    #静态文件存储的目录（这里是本地存储的路径设置，需要和源码哪里的路径一模一样，注意域名的不同）
+    location /static/ {
+        alias /home/poetize/file/; 
+        autoindex off;
+        valid_referers 192.168.6.132;
+        if ($invalid_referer) {
+            #return 403;
+        }
+    }
+}
+
+3.**替换工作**：按 `Ctrl+F` 搜索 `192.168.6.132`，全部替换为你的 **域名**。
+    ![](assets/🌸%20Poetize（最美博客）最新保姆级部署教程/file-20260209231810327.png)
 
 #### 📄 Nginx 完整配置代码
 
@@ -136,7 +195,7 @@
 ### ✅ 5. 验证与收尾
 
 1. **访问**：在浏览器输入你的域名。
-    
+    ![](assets/🌸%20Poetize（最美博客）最新保姆级部署教程/file-20260209231848918.png)
 2. **后台登录**：
     
     - 入口：通常在博客底部的“登录”按钮或域名后加 `/admin`。
@@ -152,4 +211,3 @@
     - 如果你开启了防火墙，确保宝塔面板放行了 `8081` (后端) 和 `9324` (IM聊天) 端口（虽然走了反代通常不需要对外开放，但如果是多机部署则需要）。
         
 
-这样教程就非常全面了，覆盖了从环境、文件、Java启动命令到Nginx完整代码的所有细节。
